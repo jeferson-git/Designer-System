@@ -1,20 +1,16 @@
 <template>
-  <div :class="componentClass">
-    <component style="display: block;" :is="is" :to="to" :href="href">
-      <icon v-if="icon" :path="icon" />
+  <li :class="componentClass">
+    <component class="" :is="is" :to="to" :href="href">
       {{ text }}
     </component>
-  </div>
+  </li>
 </template>
 
 <script lang="ts">
 import { computed, defineComponent } from "vue";
-import Icon from '../Icon.vue'
 
 export default defineComponent({
-  components: {
-    Icon
-  },
+  components: {},
   props: {
     id: String,
     text: String,
@@ -22,17 +18,18 @@ export default defineComponent({
     hoverColor: String,
     href: String,
     to: String,
-    icon: String,
   },
-  name: "ButtonNavBar",
+  name: "ButtonTopNavBar",
   setup(props) {
     const componentClass = computed(() => {
       const base = [
         "w-full",
-        "h-full",
+        "py-4",
+        "px-4",
+        "text-center",
         props.color ? "text-" + props.color + "-300" : "text-gray-300",
         props.hoverColor
-          ? "hover:text-" + props.hoverColor + "-400"
+          ? "text-" + props.hoverColor + "-400"
           : "hover:text-yellow-400",
         "transform",
         "hover:scale-110",

@@ -1,32 +1,49 @@
 <template>
-  <global-container>
-    <side-nav-bar :text="'DashBoard'">
-      <button-nav-bar :text="'Employers'" to="/employers" />
-      <button-nav-bar :text="'Tasks'" />
-      <button-nav-bar :text="'Schedule'" />
-      <button-nav-bar :text="'Settings'" />
+  <global-container class="bg-yellow-50">
+    <side-nav-bar :icon="mdiViewDashboard" :text="'DashBoard'">
+      <ul>
+        <div v-for="item in menu" :key="item.id">
+          <li>
+            <button-nav-bar
+              style="display: block; padding: 15px"
+              @click="arrowSidePosition(item.id)"
+              :text="item.text"
+              :icon="item.icon"
+              :to="item.to"
+              :id="item.id"
+            />
+          </li>
+        </div>
+      </ul>
     </side-nav-bar>
-    <div class="h-screen w-full bg-yellow-50">
+    <div class="bg-yellow-50 float-left h-full w-full box-border div-container">
       <top-side-bar />
+      <base-container
+        :buttonsSideBar="buttonsValue"
+        :arrowPosition="this.positionButton.arrow"
+      >
+        <router-view />
+      </base-container>
     </div>
-    <!-- <base-container> -->
-      <!-- <router-view /> -->
-    <!-- </base-container> -->
   </global-container>
 </template>
 
 <script lang="ts">
 import BaseContainer from "./shared/BaseContainer.vue";
-import DefaultBox from "./shared/DefaultBox.vue";
+import DefaultBox from "./shared/DefaultBoxViews.vue";
 import ButtonForm from "./shared/_forms/ButtonForm.vue";
 import InputForm from "./shared/_forms/InputForm.vue";
 import GlobalContainer from "./shared/GlobalContainer.vue";
 import SideNavBar from "./components/_navbar/SideNavBar.vue";
 import ButtonNavBar from "./components/_navbar/ButtonNavBar.vue";
-import EmployersComponent from './views/EmployersComponent.vue';
-import TopSideBar from './components/_navbar/TopNavBar.vue';
+import EmployersComponent from "./views/EmployersComponent.vue";
+import TopSideBar from "./components/_navbar/TopNavBar.vue";
 
 import { reactive } from "vue";
+
+import menuItems from "./config/menu.js";
+
+import { mdiViewDashboard } from "@mdi/js";
 
 export default {
   name: "Home",
@@ -39,40 +56,33 @@ export default {
     SideNavBar,
     ButtonNavBar,
     EmployersComponent,
-    TopSideBar
+    TopSideBar,
   },
   setup() {
-    const list = [
-      { id: 1, title: "Tailwind CSS" },
-      { id: 2, title: "Tailwind CSS" },
-      { id: 3, title: "Tailwind CSS" },
-      { id: 4, title: "Tailwind CSS" },
-      { id: 5, title: "Tailwind CSS" },
-      { id: 6, title: "Tailwind CSS" },
-      { id: 7, title: "Tailwind CSS" },
-      { id: 8, title: "Tailwind CSS" },
-      { id: 9, title: "Tailwind CSS" },
-    ];
-
-    const form = reactive({
-      nome: "",
-      email: "",
+    const menu = menuItems;
+    const buttonsValue = menuItems.length;
+    const positionButton = reactive({
+      arrow: 0,
     });
 
     return {
-      list,
-      form,
+      mdiViewDashboard,
+      menu,
+      buttonsValue,
+      positionButton,
     };
   },
 
   methods: {
-    changeName() {},
+    arrowSidePosition(id: string) {
+      this.positionButton.arrow = parseInt(id) * 58;
+    },
   },
 };
 </script>
 
 <style scoped>
-.teste {
-  border: 1px solid red;
+.div-container {
+  width: calc(100% - 192px);
 }
 </style>

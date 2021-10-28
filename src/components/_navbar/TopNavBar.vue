@@ -55,6 +55,6 @@ export default defineComponent({
 
 <style scoped>
 .teste {
-  border: 1px solid yellow;
+  border: 1px solid red;
 }
 </style>
