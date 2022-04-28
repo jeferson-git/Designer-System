@@ -1,5 +1,5 @@
 <template>
-  <div  class=" float-left h-full w-full">
+  <div class="p-10 h-auto default-box">
     <slot />
   </div>
 </template>
@@ -8,7 +8,7 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: "GlobalContainer",
+  name: 'DefaultBoxViews',
   setup () {
     
 
@@ -18,7 +18,8 @@ export default defineComponent({
 </script>
 
 <style scoped>
-  .teste {
-    border: 1px solid red
-  }
+.default-box {
+  border: 1px solid black;
+  
+}
 </style>

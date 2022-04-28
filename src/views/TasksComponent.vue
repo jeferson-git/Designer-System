@@ -1,6 +1,6 @@
 <template>
-  <div  class=" float-left h-full w-full">
-    <slot />
+  <div>
+    Eu sou uma View Tasks
   </div>
 </template>
 
@@ -8,7 +8,6 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: "GlobalContainer",
   setup () {
     
 
@@ -18,7 +17,5 @@ export default defineComponent({
 </script>
 
 <style scoped>
-  .teste {
-    border: 1px solid red
-  }
+
 </style>

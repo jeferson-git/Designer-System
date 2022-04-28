@@ -17,7 +17,34 @@ const routes = [
     path: '/employers',
     name: 'employers',
     component: () => import( '../views/EmployersComponent.vue')
+  },
+  {
+    meta: {
+      title: 'Tasks'
+    },
+    path: '/tasks',
+    name: 'tasks',
+    component: () => import( '../views/TasksComponent.vue')
+  },
+  {
+    meta: {
+      title: 'Shedule'
+    },
+    path: '/shedule',
+    name: 'shedule',
+    component: () => import( '../views/SheduleComponent.vue')
+  },
+  {
+    meta: {
+      title: 'Settings'
+    },
+    path: '/settings',
+    name: 'settings',
+    component: () => import( '../views/SettingsComponent.vue')
   }
+
+
+
 
 ]
 
